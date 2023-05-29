@@ -634,7 +634,7 @@ class MOMA:
             paths = [
                 osp.join(
                     self.dir_moma,
-                    f"videos/activity{'_fr' if full_res else ''}/{id_act}.mp4",
+                    f"activity{'_fr' if full_res else ''}/{id_act}.mp4",
                 )
                 for id_act in ids_act
             ]
@@ -642,13 +642,13 @@ class MOMA:
             paths = [
                 osp.join(
                     self.dir_moma,
-                    f"videos/sub_activity{'_fr' if full_res else ''}/{id_sact}.mp4",
+                    f"sub_activity{'_fr' if full_res else ''}/{id_sact}.mp4",
                 )
                 for id_sact in ids_sact
             ]
         elif ids_hoi is not None:
             paths = [
-                osp.join(self.dir_moma, f"videos/interaction/{id_hoi}.jpg")
+                osp.join(self.dir_moma, f"interaction/{id_hoi}.jpg")
                 for id_hoi in ids_hoi
             ]
         else:
@@ -656,9 +656,9 @@ class MOMA:
             clip = self.get_clips(ids_hoi=[id_hoi_clip])[0]
             times = [x[1] for x in clip.neighbors] + [clip.time]
             paths = [
-                osp.join(self.dir_moma, f"videos/interaction_frames/{x[0]}.jpg")
+                osp.join(self.dir_moma, f"interaction_frames/{x[0]}.jpg")
                 for x in clip.neighbors
-            ] + [osp.join(self.dir_moma, f"videos/interaction/{id_hoi_clip}.jpg")]
+            ] + [osp.join(self.dir_moma, f"interaction/{id_hoi_clip}.jpg")]
             paths = [x for _, x in sorted(zip(times, paths))]
 
         if sanity_check and not all(osp.exists(path) for path in paths):
